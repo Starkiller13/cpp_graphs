@@ -6,7 +6,7 @@
 
 int ford_fulkerson(_graph G, int s, int t, bool verbose);
 int ford_fulkerson_alg(int s, int t, int n);
-
+void print_help();
 struct exec {
     int * a_p1, ap_size;
     int * a_p2, n_size;
@@ -28,15 +28,7 @@ int main(int argc, char * argv[]){
     }
     
     if(argc == 2 && (!strcmp(argv[1],"--help") || !strcmp(argv[1],"-h")) ){
-        printf("\nProgram takes in input in this format: [-v (not mandatory)] [source node INT] [terminal node INT] [flow network file .txt]");
-        printf("\nDefine a flow network file in star notation as follows:\n");
-        printf("\n line1 -> [# of vertex] + space + [# of edges] ");
-        printf("\n line2 -> [index array of star notation (start with 0)] ");
-        printf("\n line3 -> [edges array] ");
-        printf("\n line4 -> [capacity of edges array]\n");
-        printf("\n Remember that this program works with flow networks, \n  not any kind of graph");
-        printf("\nVerbose can be shown putting tag -v before the actual inputs \n");
-        printf("\nExamples can be found in  folder 'ff_examples/' \n\n");
+        print_help();
     }
     else if(argc == 4){
         try{
@@ -71,6 +63,17 @@ int main(int argc, char * argv[]){
     return 0;
 }
 
+void print_help(){
+    printf("\nProgram takes in input in this format: [-v (not mandatory)] [source node INT] [terminal node INT] [flow network file .txt]");
+    printf("\nDefine a flow network file in star notation as follows:\n");
+    printf("\n line1 -> [# of vertex] + space + [# of edges] ");
+    printf("\n line2 -> [index array of star notation (start with 0)] ");
+    printf("\n line3 -> [edges array] ");
+    printf("\n line4 -> [capacity of edges array]\n");
+    printf("\n Remember that this program works with flow networks, \n  not any kind of graph");
+    printf("\nVerbose can be shown putting tag -v before the actual inputs \n");
+    printf("\nExamples can be found in  folder 'ff_examples/' \n\n");
+}
 int ford_fulkerson(_graph G, int s, int t, bool verbose){
     FF.verbose = verbose;
     FF.ap_size = G.num_edges();
